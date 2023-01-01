@@ -1,0 +1,51 @@
+﻿@using UserCrud.BLL.DTO
+@model EditProfileDto
+
+@{
+    ViewData["Title"] = "ویرایش";
+}
+
+<h1>ویرایش</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UserId" />
+            <input type="hidden" asp-for="Avatar" />
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MelliCode" class="control-label"></label>
+                <input asp-for="MelliCode" class="form-control" />
+                <span asp-validation-for="MelliCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="file" asp-for="UserAvatar" class="form-control" />
+                <img class="img-thumbnail" style="max-width:150px" src="/ProfilePicture/@Model.Avatar" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ویرایش" class="btn btn-warning" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">بازگشت به صفحه اصلی</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
